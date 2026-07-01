@@ -1332,30 +1332,44 @@
         }
 
         // Setup search functionality
-        function setupSearch() {
-            const searchInput = document.getElementById('employeeSearch');
+       // Setup search functionality with Enter key
+function setupSearch() {
+    const searchInput = document.getElementById('employeeSearch');
+    
+    // Listen for Enter key press
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent form submission if in a form
+            const searchTerm = this.value.toLowerCase().trim();
             
-            searchInput.addEventListener('input', function(e) {
-                const searchTerm = e.target.value.toLowerCase();
-                
-                if (searchTerm.length < 2) {
-                    document.getElementById('employeeDetailSection').classList.add('hidden');
-                    document.getElementById('hierarchySection').classList.add('hidden');
-                    return;
-                }
+            if (searchTerm.length < 2) {
+                document.getElementById('employeeDetailSection').classList.add('hidden');
+                document.getElementById('hierarchySection').classList.add('hidden');
+                return;
+            }
 
-                const foundEmployee = Object.keys(employeeData).find(name => 
-                    name.toLowerCase().includes(searchTerm)
-                );
+            const foundEmployee = Object.keys(employeeData).find(name => 
+                name.toLowerCase().includes(searchTerm)
+            );
 
-                if (foundEmployee) {
-                    showEmployeeDetails(foundEmployee);
-                } else {
-                    document.getElementById('employeeDetailSection').classList.add('hidden');
-                    document.getElementById('hierarchySection').classList.add('hidden');
-                }
-            });
+            if (foundEmployee) {
+                showEmployeeDetails(foundEmployee);
+            } else {
+                document.getElementById('employeeDetailSection').classList.add('hidden');
+                document.getElementById('hierarchySection').classList.add('hidden');
+            }
         }
+    });
+    
+    // Optional: Clear search when clicking outside
+    document.addEventListener('click', function(e) {
+        if (e.target !== searchInput) {
+            searchInput.value = '';
+            document.getElementById('employeeDetailSection').classList.add('hidden');
+            document.getElementById('hierarchySection').classList.add('hidden');
+        }
+    });
+}
 
         // Show employee details
         function showEmployeeDetails(employeeName) {
