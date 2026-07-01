@@ -1,10 +1,10 @@
-
-
-
-    
-    
-    MLS Employee Analytics Dashboard
-    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLS Employee Analytics Dashboard</title>
+    <style>
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #34495e;
@@ -333,153 +333,106 @@
         .toast.show {
             transform: translateY(0);
         }
-    
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <div class="dashboard-header">
+            <h1>MLS Employee Analytics Dashboard</h1>
+            <p>Comprehensive view of MLS employee hierarchy and performance metrics</p>
+        </div>
 
+        <!-- Search Section -->
+        <div class="search-section">
+            <input type="text" class="search-input" id="employeeSearch" placeholder="Search for an employee by name...">
+        </div>
 
-    
-         Header Section 
-        
-            MLS Employee Analytics Dashboard
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <h3>Total Employees</h3>
+                <div class="value" id="totalEmployees">118</div>
+                <div class="trend up">All time</div>
+            </div>
+            <div class="kpi-card">
+                <h3>Male Employees</h3>
+                <div class="value" id="maleEmployees">97</div>
+                <div class="trend up">82.2%</div>
+            </div>
+            <div class="kpi-card">
+                <h3>Female Employees</h3>
+                <div class="value" id="femaleEmployees">21</div>
+                <div class="trend up">17.8%</div>
+            </div>
+            <div class="kpi-card">
+                <h3>Active Batches</h3>
+                <div class="value" id="activeBatches">31</div>
+                <div class="trend up">From Batch 2 to Batch 32</div>
+            </div>
+            <div class="kpi-card">
+                <h3>Locations</h3>
+                <div class="value">2</div>
+                <div class="trend up">ZS Chennai & ZS Tenkasi</div>
+            </div>
+        </div>
 
-            Comprehensive view of MLS employee hierarchy and performance metrics
+        <!-- Charts Section -->
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Employee Distribution by Batch</h3>
+                <div class="chart-container" id="batchDistributionChart">
+                    <canvas id="batchChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Gender Distribution</h3>
+                <div class="chart-container" id="genderDistributionChart">
+                    <canvas id="genderChart"></canvas>
+                </div>
+            </div>
+        </div>
 
-        
+        <!-- Employee Table -->
+        <div class="table-card">
+            <h3>Employee Directory</h3>
+            <table class="employee-table">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Batch</th>
+                        <th>Location</th>
+                        <th>Reporting Manager</th>
+                        <th>Direct Reports</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTableBody">
+                    <!-- Employee data will be populated here -->
+                </tbody>
+            </table>
+        </div>
 
+        <!-- Employee Detail Section (Hidden by default) -->
+        <div class="employee-detail hidden" id="employeeDetailSection">
+            <h3>Employee Details</h3>
+            <div class="detail-grid" id="employeeDetailContent">
+                <!-- Employee details will be populated here -->
+            </div>
+        </div>
 
-         Search Section 
-        
-            
-        
+        <!-- Reporting Hierarchy Section -->
+        <div class="hierarchy-section hidden" id="hierarchySection">
+            <h3>Reporting Hierarchy</h3>
+            <div class="hierarchy-tree" id="hierarchyContent">
+                <!-- Hierarchy will be populated here -->
+            </div>
+        </div>
+    </div>
 
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Employee details loaded</div>
 
-         KPI Cards 
-        
-            
-                Total Employees
-
-                118
-
-                All time
-
-            
-
-            
-                Male Employees
-
-                97
-
-                82.2%
-
-            
-
-            
-                Female Employees
-
-                21
-
-                17.8%
-
-            
-
-            
-                Active Batches
-
-                31
-
-                From Batch 2 to Batch 32
-
-            
-
-            
-                Locations
-
-                2
-
-                ZS Chennai & ZS Tenkasi
-
-            
-
-        
-
-
-         Charts Section 
-        
-            
-                Employee Distribution by Batch
-
-                
-                    
-                
-
-            
-
-            
-                Gender Distribution
-
-                
-                    
-                
-
-            
-
-        
-
-
-         Employee Table 
-        
-            Employee Directory
-
-            
-                
-                    
-                        Employee Name
-
-                        Batch
-
-                        Location
-
-                        Reporting Manager
-
-                        Direct Reports
-
-                    
-                
-                
-                     Employee data will be populated here 
-                
-            
-        
-
-
-         Employee Detail Section (Hidden by default) 
-        
-            Employee Details
-
-            
-                 Employee details will be populated here 
-            
-
-        
-
-
-         Reporting Hierarchy Section 
-        
-            Reporting Hierarchy
-
-            
-                 Hierarchy will be populated here 
-            
-
-        
-
-    
-
-
-     Toast Notification 
-    Employee details loaded
-
-
-    
+    <script>
         // Employee Data Structure
         const employeeData = {
             "Abilash U": {
@@ -1476,5 +1429,6 @@
                 toast.classList.remove('show');
             }, 3000);
         }
-    
-
+    </script>
+</body>
+</html>
