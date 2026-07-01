@@ -1,0 +1,1480 @@
+
+
+
+    
+    
+    MLS Employee Analytics Dashboard
+    
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --text-color: #333;
+            --border-radius: 8px;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--light-bg);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kpi-card h3 {
+            color: var(--secondary-color);
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .kpi-card .value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .kpi-card .trend {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .trend.up {
+            color: var(--success-color);
+        }
+
+        .trend.down {
+            color: var(--danger-color);
+        }
+
+        /* Charts Section */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .chart-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .chart-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+
+        /* Employee Table */
+        .table-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .table-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .employee-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .employee-table th,
+        .employee-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .employee-table th {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .employee-table tr:hover {
+            background-color: var(--light-bg);
+        }
+
+        /* Employee Detail Section */
+        .employee-detail {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .employee-detail h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .detail-item {
+            padding: 15px;
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+        }
+
+        .detail-item label {
+            display: block;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .detail-item .value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Reporting Hierarchy */
+        .hierarchy-section {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .hierarchy-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .hierarchy-tree {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .hierarchy-level {
+            padding: 15px;
+            background: var(--light-bg);
+            border-radius: var(--border-radius);
+            margin-left: 20px;
+        }
+
+        .hierarchy-level h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .hierarchy-list {
+            list-style: none;
+        }
+
+        .hierarchy-list li {
+            padding: 5px 0;
+            color: var(--text-color);
+        }
+
+        /* Batch Distribution */
+        .batch-distribution {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .batch-badge {
+            padding: 8px 15px;
+            background: var(--accent-color);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--secondary-color);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transform: translateY(100px);
+            transition: transform 0.3s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+    
+
+
+    
+         Header Section 
+        
+            MLS Employee Analytics Dashboard
+
+            Comprehensive view of MLS employee hierarchy and performance metrics
+
+        
+
+
+         Search Section 
+        
+            
+        
+
+
+         KPI Cards 
+        
+            
+                Total Employees
+
+                118
+
+                All time
+
+            
+
+            
+                Male Employees
+
+                97
+
+                82.2%
+
+            
+
+            
+                Female Employees
+
+                21
+
+                17.8%
+
+            
+
+            
+                Active Batches
+
+                31
+
+                From Batch 2 to Batch 32
+
+            
+
+            
+                Locations
+
+                2
+
+                ZS Chennai & ZS Tenkasi
+
+            
+
+        
+
+
+         Charts Section 
+        
+            
+                Employee Distribution by Batch
+
+                
+                    
+                
+
+            
+
+            
+                Gender Distribution
+
+                
+                    
+                
+
+            
+
+        
+
+
+         Employee Table 
+        
+            Employee Directory
+
+            
+                
+                    
+                        Employee Name
+
+                        Batch
+
+                        Location
+
+                        Reporting Manager
+
+                        Direct Reports
+
+                    
+                
+                
+                     Employee data will be populated here 
+                
+            
+        
+
+
+         Employee Detail Section (Hidden by default) 
+        
+            Employee Details
+
+            
+                 Employee details will be populated here 
+            
+
+        
+
+
+         Reporting Hierarchy Section 
+        
+            Reporting Hierarchy
+
+            
+                 Hierarchy will be populated here 
+            
+
+        
+
+    
+
+
+     Toast Notification 
+    Employee details loaded
+
+
+    
+        // Employee Data Structure
+        const employeeData = {
+            "Abilash U": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Arunprasad R",
+                directReports: ["PG Sridhar", "Vijay R", "Manikandan Vembu"]
+            },
+            "Akila Karthickeyan": {
+                batch: 26,
+                location: "ZS Chennai",
+                manager: "Kiran Kumar Mannem",
+                directReports: ["Sridhar Gopalakrishnan", "Vijaykumar Rajendran", "Manikandan Vembu"]
+            },
+            "Ali Khan E": {
+                batch: 17,
+                location: "ZS Chennai",
+                manager: "Karthik Marudaiyan",
+                directReports: ["Hyther Nizam", "Shailesh"]
+            },
+            "Amkon Ambrose": {
+                batch: 22,
+                location: "ZS Chennai",
+                manager: "Hari Ram Senthil Murugappa",
+                directReports: ["Gerald", "Rajesh G"]
+            },
+            "Eraianbu S": {
+                batch: 29,
+                location: "ZS Chennai",
+                manager: "Prabu R",
+                directReports: ["Ponnusamy", "Manikandan Vembu"]
+            },
+            "Arunkumar Muthukamatchi": {
+                batch: 25,
+                location: "ZS Chennai",
+                manager: "Vishnu Vardhan Nagaraju",
+                directReports: ["Ananda Raman Krishnan", "Manikandan Vembu"]
+            },
+            "Arunkumar Narayanan": {
+                batch: 11,
+                location: "ZS Chennai",
+                manager: "Pavan Kumar Lakshmi Narayanan",
+                directReports: ["Anandraj Paulraj", "Mathivanan Venkatachalam", "Shailesh Kumar Davey"]
+            },
+            "Ashwin Kumar K": {
+                batch: 27,
+                location: "ZS Chennai",
+                manager: "Muniyasamy V",
+                directReports: ["Vijayakumar Sadagopan", "Manikandan Vembu"]
+            },
+            "Balaji T": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Rajesh Ranganathan",
+                directReports: ["Mathivanan V", "Shailesh"]
+            },
+            "Balabharathi": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Abinaya Kannan",
+                directReports: ["Vaseegaran B", "Sripathy Ramesh", "Hyther Nizam", "Shailesh"]
+            },
+            "Balaji Nunna": {
+                batch: 18,
+                location: "ZS Chennai",
+                manager: "Ram Chiranjeevi",
+                directReports: ["Aravindhan", "Vijay R", "Manikandan Vembu"]
+            },
+            "Balakumar S": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Ramachandran N",
+                directReports: ["Sripathy Ramesh", "Hyther Nizam", "Shailesh"]
+            },
+            "Bharathi J": {
+                batch: 2,
+                location: "ZS Chennai",
+                manager: "Rajendran D",
+                directReports: []
+            },
+            "Bhavani M": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Ramesh Kumar J",
+                directReports: ["Srinivasan G", "Manikandan Vembu"]
+            },
+            "Borris John": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Anbu",
+                directReports: ["Chinnathambi", "Saravanan Sengamalam", "Shymala Ramesh", "Shailesh"]
+            },
+            "Deepakkumar D": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Shanmuga Perumal Narayana Pillai",
+                directReports: ["Ashok Kumar K", "Manikandan Vembu"]
+            },
+            "Dhanalakshmi S": {
+                batch: 13,
+                location: "ZS Chennai",
+                manager: "Vijayakumar Sadagopan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Dinagaran M": {
+                batch: 2,
+                location: "ZS Chennai",
+                manager: "Krishnakumar Krishnamoorthy",
+                directReports: ["Radha Vembu"]
+            },
+            "Dinesh Kumar D": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Saravanan Govindaraj",
+                directReports: ["Rajesh G"]
+            },
+            "Dinesh Anandan": {
+                batch: 17,
+                location: "ZS Chennai",
+                manager: "Elumalai J",
+                directReports: ["Sivaramakrishnan Iswaran", "Shailesh"]
+            },
+            "Dineshkumar S": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Karuppuchamy Karuppuchamy",
+                directReports: ["Charles Adaikkalam", "Hyther Nizam", "Shailesh"]
+            },
+            "Divya E": {
+                batch: 22,
+                location: "ZS Chennai",
+                manager: "Kumaravel Natarajan",
+                directReports: ["Rajkumar Vijayarangakannan", "Shailesh"]
+            },
+            "Fathima Riyaz": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Chandrasekar Padmanabhan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Giri Moorthy": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Anoop Poovath",
+                directReports: ["Saran Babu", "Hyther Nizam", "Shailesh"]
+            },
+            "Gowthaman Chandrasekar": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Kiran Kumar Mannem",
+                directReports: ["Sridhar Gopalakrishnan", "Vijaykumar Rajendran", "Manikandan Vembu"]
+            },
+            "Gurulakshmi": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Sathish Kumar Thanganathan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Hari Prasad Rajendran": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Kiran Kumar Mannem",
+                directReports: ["Sridhar Gopalakrishnan", "Vijaykumar Rajendran", "Manikandan Vembu"]
+            },
+            "Mohamed Imran": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Priyadharshini Elumalai",
+                directReports: ["Ponnusamy Chinnasamy", "Manikandan Vembu"]
+            },
+            "Jalakandeshwaran A": {
+                batch: 27,
+                location: "ZS Chennai",
+                manager: "Shailesh",
+                directReports: []
+            },
+            "Janaki A": {
+                batch: 10,
+                location: "ZS Chennai",
+                manager: "Manoj Kumar Vellai Durai",
+                directReports: ["Raja R", "Manikandan Vembu"]
+            },
+            "Jayandra L": {
+                batch: 32,
+                location: "ZS Chennai",
+                manager: "Siva Ranjith Kumar",
+                directReports: ["Ramkumar Govindarajan", "Shailesh"]
+            },
+            "Joseph Rathinavel Prabhu": {
+                batch: 25,
+                location: "ZS Chennai",
+                manager: "Gokulraj Vadivelraj",
+                directReports: ["Arunkumar MG", "Ponnusamy C", "Manikandan Vembu"]
+            },
+            "Kalaiselvan K": {
+                batch: 13,
+                location: "ZS Chennai",
+                manager: "Srikrishnan Dhandapani",
+                directReports: ["Umasankar N", "Shailesh"]
+            },
+            "Kalaivani Selvaraj": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Dineshkumar S",
+                directReports: ["Karuppuchamy Karuppuchamy", "Charles Adaikkalam", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Kaleeswaran N": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Ramkumar Ramamoorthy",
+                directReports: ["Shailesh"]
+            },
+            "Kalidas Ganesan": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Sasi Nachimuthu Arasu",
+                directReports: ["Balaganesh Sakthi Mohan", "Clarence Rozario", "Shailesh Kumar Davey"]
+            },
+            "Kanakaraj Jothilingam": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Deepakkumar D",
+                directReports: ["Shanmuga Perumal Narayana Pillai", "Ashok Kumar Krishnan", "Manikandan Vembu"]
+            },
+            "Karuppasamy Eswaran": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Emil Chacko",
+                directReports: ["Subburaj Subburayalu", "Manikandan Vembu"]
+            },
+            "Karthikeyan Rajarethinam": {
+                batch: 15,
+                location: "ZS Chennai",
+                manager: "Ramachandran Natesan",
+                directReports: ["Ramesh Sripathy", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Kishore Kumar N": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Durai Murugan Visvanathan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Kumaresan Shanmugam": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Subburaj Subburayalu",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Loganathan Elumalai": {
+                batch: 27,
+                location: "ZS Chennai",
+                manager: "Prakashan Raghavan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Logesh Kumar Srinivasan": {
+                batch: 16,
+                location: "ZS Chennai",
+                manager: "Muthu Raj Muthiah",
+                directReports: ["Saran Babu", "Paramasivam", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Lokesh Kumar Elumalai": {
+                batch: 13,
+                location: "ZS Chennai",
+                manager: "Ramkumar Ramamoorthy",
+                directReports: ["Shailesh Kumar Davey"]
+            },
+            "Lokesh Valayapathi": {
+                batch: 26,
+                location: "ZS Chennai",
+                manager: "Karthikeyan Jambulingam",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Madan Kumar Sampath": {
+                batch: 16,
+                location: "ZS Chennai",
+                manager: "Karthik Marudaiyan",
+                directReports: ["Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Madhankumar Ramamoorthy": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Chinnathambi Somasundaram",
+                directReports: ["Saravanan Sengamalan", "Shyamala Ramesh", "Shailesh Kumar Davey"]
+            },
+            "Annamalai Irusappan": {
+                batch: 10,
+                location: "ZS Chennai",
+                manager: "Jegannathan Ragavan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Mani M": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Vijayakumar Sadagopan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Manikandan MG": {
+                batch: 5,
+                location: "ZS Chennai",
+                manager: "Chitrapandian Nachiappan",
+                directReports: ["Muthu Kumaran Arumugam", "Shailesh Kumar Davey"]
+            },
+            "Manikandan Nagarajan": {
+                batch: 14,
+                location: "ZS Chennai",
+                manager: "Manikandan MG",
+                directReports: ["Chitrapandian Nachiappan", "Muthu Kumaran Arumugam", "Shailesh Kumar Davey"]
+            },
+            "Mathankumar Vadivel": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Vinodh Murahari Muralidharan",
+                directReports: ["Hyther Nizam", "Shailesh"]
+            },
+            "Mathan Prabakaran": {
+                batch: 18,
+                location: "ZS Chennai",
+                manager: "Muthu Mariappan",
+                directReports: ["Palani Ramkumar Durai", "MSD Prasad", "Shailesh Kumar Davey"]
+            },
+            "Meganath Venkatesan": {
+                batch: 18,
+                location: "ZS Chennai",
+                manager: "Ramki R",
+                directReports: ["Ponnusamy", "Manikandan Vembu"]
+            },
+            "Mohamed Raffi S": {
+                batch: 22,
+                location: "ZS Chennai",
+                manager: "Vidhin Dev Vinodhan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Mohammed Ali Shajahan": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Rajasekaran Gopalan",
+                directReports: ["Aravindhan", "Nagalingam", "Vijaykumar"]
+            },
+            "Dinesh Kumar D": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Saravanan Govindaraj",
+                directReports: ["Rajesh G"]
+            },
+            "Dinesh Anandan": {
+                batch: 17,
+                location: "ZS Chennai",
+                manager: "Elumalai J",
+                directReports: ["Sivaramakrishnan Iswaran", "Shailesh"]
+            },
+            "Dineshkumar S": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Karuppuchamy Karuppuchamy",
+                directReports: ["Charles Adaikkalam", "Hyther Nizam", "Shailesh"]
+            },
+            "Divya E": {
+                batch: 22,
+                location: "ZS Chennai",
+                manager: "Kumaravel Natarajan",
+                directReports: ["Rajkumar Vijayarangakannan", "Shailesh"]
+            },
+            "Fathima Riyaz": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Chandrasekar Padmanabhan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Giri Moorthy": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Anoop Poovath",
+                directReports: ["Saran Babu", "Hyther Nizam", "Shailesh"]
+            },
+            "Gowthaman Chandrasekar": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Kiran Kumar Mannem",
+                directReports: ["Sridhar Gopalakrishnan", "Vijaykumar Rajendran", "Manikandan Vembu"]
+            },
+            "Gurulakshmi": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Sathish Kumar Thanganathan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Hari Prasad Rajendran": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Kiran Kumar Mannem",
+                directReports: ["Sridhar Gopalakrishnan", "Vijaykumar Rajendran", "Manikandan Vembu"]
+            },
+            "Mohamed Imran": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Priyadharshini Elumalai",
+                directReports: ["Ponnusamy Chinnasamy", "Manikandan Vembu"]
+            },
+            "Jalakandeshwaran A": {
+                batch: 27,
+                location: "ZS Chennai",
+                manager: "Shailesh",
+                directReports: []
+            },
+            "Janaki A": {
+                batch: 10,
+                location: "ZS Chennai",
+                manager: "Manoj Kumar Vellai Durai",
+                directReports: ["Raja R", "Manikandan Vembu"]
+            },
+            "Jayandra L": {
+                batch: 32,
+                location: "ZS Chennai",
+                manager: "Siva Ranjith Kumar",
+                directReports: ["Ramkumar Govindarajan", "Shailesh"]
+            },
+            "Joseph Rathinavel Prabhu": {
+                batch: 25,
+                location: "ZS Chennai",
+                manager: "Gokulraj Vadivelraj",
+                directReports: ["Arunkumar MG", "Ponnusamy C", "Manikandan Vembu"]
+            },
+            "Kalaiselvan K": {
+                batch: 13,
+                location: "ZS Chennai",
+                manager: "Srikrishnan Dhandapani",
+                directReports: ["Umasankar N", "Shailesh"]
+            },
+            "Kalaivani Selvaraj": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Dineshkumar S",
+                directReports: ["Karuppuchamy Karuppuchamy", "Charles Adaikkalam", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Kaleeswaran N": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Ramkumar Ramamoorthy",
+                directReports: ["Shailesh"]
+            },
+            "Kalidas Ganesan": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Sasi Nachimuthu Arasu",
+                directReports: ["Balaganesh Sakthi Mohan", "Clarence Rozario", "Shailesh Kumar Davey"]
+            },
+            "Kanakaraj Jothilingam": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Deepakkumar D",
+                directReports: ["Shanmuga Perumal Narayana Pillai", "Ashok Kumar Krishnan", "Manikandan Vembu"]
+            },
+            "Karuppasamy Eswaran": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Emil Chacko",
+                directReports: ["Subburaj Subburayalu", "Manikandan Vembu"]
+            },
+            "Karthikeyan Rajarethinam": {
+                batch: 15,
+                location: "ZS Chennai",
+                manager: "Ramachandran Natesan",
+                directReports: ["Ramesh Sripathy", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Kishore Kumar N": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Durai Murugan Visvanathan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Kumaresan Shanmugam": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Subburaj Subburayalu",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Loganathan Elumalai": {
+                batch: 27,
+                location: "ZS Chennai",
+                manager: "Prakashan Raghavan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Logesh Kumar Srinivasan": {
+                batch: 16,
+                location: "ZS Chennai",
+                manager: "Muthu Raj Muthiah",
+                directReports: ["Saran Babu", "Paramasivam", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Lokesh Kumar Elumalai": {
+                batch: 13,
+                location: "ZS Chennai",
+                manager: "Ramkumar Ramamoorthy",
+                directReports: ["Shailesh Kumar Davey"]
+            },
+            "Lokesh Valayapathi": {
+                batch: 26,
+                location: "ZS Chennai",
+                manager: "Karthikeyan Jambulingam",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Madan Kumar Sampath": {
+                batch: 16,
+                location: "ZS Chennai",
+                manager: "Karthik Marudaiyan",
+                directReports: ["Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Madhankumar Ramamoorthy": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Chinnathambi Somasundaram",
+                directReports: ["Saravanan Sengamalan", "Shyamala Ramesh", "Shailesh Kumar Davey"]
+            },
+            "Annamalai Irusappan": {
+                batch: 10,
+                location: "ZS Chennai",
+                manager: "Jegannathan Ragavan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Mani M": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Vijayakumar Sadagopan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Manikandan MG": {
+                batch: 5,
+                location: "ZS Chennai",
+                manager: "Chitrapandian Nachiappan",
+                directReports: ["Muthu Kumaran Arumugam", "Shailesh Kumar Davey"]
+            },
+            "Manikandan Nagarajan": {
+                batch: 14,
+                location: "ZS Chennai",
+                manager: "Manikandan MG",
+                directReports: ["Chitrapandian Nachiappan", "Muthu Kumaran Arumugam", "Shailesh Kumar Davey"]
+            },
+            "Mathankumar Vadivel": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Vinodh Murahari Muralidharan",
+                directReports: ["Hyther Nizam", "Shailesh"]
+            },
+            "Mathan Prabakaran": {
+                batch: 18,
+                location: "ZS Chennai",
+                manager: "Muthu Mariappan",
+                directReports: ["Palani Ramkumar Durai", "MSD Prasad", "Shailesh Kumar Davey"]
+            },
+            "Meganath Venkatesan": {
+                batch: 18,
+                location: "ZS Chennai",
+                manager: "Ramki R",
+                directReports: ["Ponnusamy", "Manikandan Vembu"]
+            },
+            "Mohamed Raffi S": {
+                batch: 22,
+                location: "ZS Chennai",
+                manager: "Vidhin Dev Vinodhan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Mohammed Ali Shajahan": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Rajasekaran Gopalan",
+                directReports: ["Aravindhan", "Nagalingam", "Vijaykumar"]
+            },
+            "Dinesh Kumar D": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Saravanan Govindaraj",
+                directReports: ["Rajesh G"]
+            },
+            "Dinesh Anandan": {
+                batch: 17,
+                location: "ZS Chennai",
+                manager: "Elumalai J",
+                directReports: ["Sivaramakrishnan Iswaran", "Shailesh"]
+            },
+            "Dineshkumar S": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Karuppuchamy Karuppuchamy",
+                directReports: ["Charles Adaikkalam", "Hyther Nizam", "Shailesh"]
+            },
+            "Divya E": {
+                batch: 22,
+                location: "ZS Chennai",
+                manager: "Kumaravel Natarajan",
+                directReports: ["Rajkumar Vijayarangakannan", "Shailesh"]
+            },
+            "Fathima Riyaz": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Chandrasekar Padmanabhan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Giri Moorthy": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Anoop Poovath",
+                directReports: ["Saran Babu", "Hyther Nizam", "Shailesh"]
+            },
+            "Gowthaman Chandrasekar": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Kiran Kumar Mannem",
+                directReports: ["Sridhar Gopalakrishnan", "Vijaykumar Rajendran", "Manikandan Vembu"]
+            },
+            "Gurulakshmi": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Sathish Kumar Thanganathan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Hari Prasad Rajendran": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Kiran Kumar Mannem",
+                directReports: ["Sridhar Gopalakrishnan", "Vijaykumar Rajendran", "Manikandan Vembu"]
+            },
+            "Mohamed Imran": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Priyadharshini Elumalai",
+                directReports: ["Ponnusamy Chinnasamy", "Manikandan Vembu"]
+            },
+            "Jalakandeshwaran A": {
+                batch: 27,
+                location: "ZS Chennai",
+                manager: "Shailesh",
+                directReports: []
+            },
+            "Janaki A": {
+                batch: 10,
+                location: "ZS Chennai",
+                manager: "Manoj Kumar Vellai Durai",
+                directReports: ["Raja R", "Manikandan Vembu"]
+            },
+            "Jayandra L": {
+                batch: 32,
+                location: "ZS Chennai",
+                manager: "Siva Ranjith Kumar",
+                directReports: ["Ramkumar Govindarajan", "Shailesh"]
+            },
+            "Joseph Rathinavel Prabhu": {
+                batch: 25,
+                location: "ZS Chennai",
+                manager: "Gokulraj Vadivelraj",
+                directReports: ["Arunkumar MG", "Ponnusamy C", "Manikandan Vembu"]
+            },
+            "Kalaiselvan K": {
+                batch: 13,
+                location: "ZS Chennai",
+                manager: "Srikrishnan Dhandapani",
+                directReports: ["Umasankar N", "Shailesh"]
+            },
+            "Kalaivani Selvaraj": {
+                batch: 24,
+                location: "ZS Chennai",
+                manager: "Dineshkumar S",
+                directReports: ["Karuppuchamy Karuppuchamy", "Charles Adaikkalam", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Kaleeswaran N": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Ramkumar Ramamoorthy",
+                directReports: ["Shailesh"]
+            },
+            "Kalidas Ganesan": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Sasi Nachimuthu Arasu",
+                directReports: ["Balaganesh Sakthi Mohan", "Clarence Rozario", "Shailesh Kumar Davey"]
+            },
+            "Kanakaraj Jothilingam": {
+                batch: 28,
+                location: "ZS Chennai",
+                manager: "Deepakkumar D",
+                directReports: ["Shanmuga Perumal Narayana Pillai", "Ashok Kumar Krishnan", "Manikandan Vembu"]
+            },
+            "Karuppasamy Eswaran": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Emil Chacko",
+                directReports: ["Subburaj Subburayalu", "Manikandan Vembu"]
+            },
+            "Karthikeyan Rajarethinam": {
+                batch: 15,
+                location: "ZS Chennai",
+                manager: "Ramachandran Natesan",
+                directReports: ["Ramesh Sripathy", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Kishore Kumar N": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Durai Murugan Visvanathan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Kumaresan Shanmugam": {
+                batch: 9,
+                location: "ZS Chennai",
+                manager: "Subburaj Subburayalu",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Loganathan Elumalai": {
+                batch: 27,
+                location: "ZS Chennai",
+                manager: "Prakashan Raghavan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Logesh Kumar Srinivasan": {
+                batch: 16,
+                location: "ZS Chennai",
+                manager: "Muthu Raj Muthiah",
+                directReports: ["Saran Babu", "Paramasivam", "Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Lokesh Kumar Elumalai": {
+                batch: 13,
+                location: "ZS Chennai",
+                manager: "Ramkumar Ramamoorthy",
+                directReports: ["Shailesh Kumar Davey"]
+            },
+            "Lokesh Valayapathi": {
+                batch: 26,
+                location: "ZS Chennai",
+                manager: "Karthikeyan Jambulingam",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Madan Kumar Sampath": {
+                batch: 16,
+                location: "ZS Chennai",
+                manager: "Karthik Marudaiyan",
+                directReports: ["Hyther Nizam", "Shailesh Kumar Davey"]
+            },
+            "Madhankumar Ramamoorthy": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Chinnathambi Somasundaram",
+                directReports: ["Saravanan Sengamalan", "Shyamala Ramesh", "Shailesh Kumar Davey"]
+            },
+            "Annamalai Irusappan": {
+                batch: 10,
+                location: "ZS Chennai",
+                manager: "Jegannathan Ragavan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Mani M": {
+                batch: 21,
+                location: "ZS Chennai",
+                manager: "Vijayakumar Sadagopan",
+                directReports: ["Manikandan Vembu"]
+            },
+            "Manikandan MG": {
+                batch: 5,
+                location: "ZS Chennai",
+                manager: "Chitrapandian Nachiappan",
+                directReports: ["Muthu Kumaran Arumugam", "Shailesh Kumar Davey"]
+            },
+            "Manikandan Nagarajan": {
+                batch: 14,
+                location: "ZS Chennai",
+                manager: "Manikandan MG",
+                directReports: ["Chitrapandian Nachiappan", "Muthu Kumaran Arumugam", "Shailesh Kumar Davey"]
+            },
+            "Mathankumar Vadivel": {
+                batch: 20,
+                location: "ZS Chennai",
+                manager: "Vinodh Murahari Muralidharan",
+                directReports: ["Hyther Nizam", "Shailesh"]
+            },
+            "Mathan Prabakaran": {
+                batch: 18,
+                location: " functionality: "ZS Chennai",
+                manager: "Muthu Mariappan",
+                directReports: ["Palani Ramkumar Durai", "MSD Prasad", "Shailesh Kumar Davey"]
+            },
+            "Meganath Venkatesan": {
+                batch: 18,
+                location: "ZS Chennai",
+                manager: "Ramki R",
+                directReports: ["Ponnusamy", "Manikandan Vembu"]
+            },
+            "Mohamed Raffi S": {
+                batch: 22,
+                location: "ZS Chennai",
+                manager: "Vidhin Dev Vinodhan",
+                directReports: ["Rajendran Dandapani"]
+            },
+            "Mohammed Ali Shajahan": {
+                batch: 23,
+                location: "ZS Chennai",
+                manager: "Rajasekaran Gopalan",
+                directReports: ["Aravindhan", "Nagalingam", "Vijaykumar"]
+            }
+        };
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            populateEmployeeTable();
+            initCharts();
+            setupSearch();
+        });
+
+        // Populate employee table
+        function populateEmployeeTable() {
+            const tableBody = document.getElementById('employeeTableBody');
+            tableBody.innerHTML = '';
+            
+            Object.keys(employeeData).forEach(employeeName => {
+                const employee = employeeData[employeeName];
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${employeeName}</td>
+                    <td><span class="batch-badge">${employee.batch}</span></td>
+                    <td>${employee.location}</td>
+                    <td>${employee.manager}</td>
+                    <td>${employee.directReports.length}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Initialize charts
+        function initCharts() {
+            // Batch distribution chart
+            const batchData = getBatchDistribution();
+            const batchChart = document.getElementById('batchChart').getContext('2d');
+            new Chart(batchChart, {
+                type: 'bar',
+                data: {
+                    labels: batchData.labels,
+                    datasets: [{
+                        label: 'Employees per Batch',
+                        data: batchData.values,
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gender distribution chart
+            const genderChart = document.getElementById('genderChart').getContext('2d');
+            new Chart(genderChart, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Male', 'Female'],
+                    datasets: [{
+                        data: [97, 21],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(231, 76, 60, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(231, 76, 60, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // Get batch distribution data
+        function getBatchDistribution() {
+            const batchCounts = {};
+            
+            Object.values(employeeData).forEach(employee => {
+                if (!batchCounts[employee.batch]) {
+                    batchCounts[employee.batch] = 0;
+                }
+                batchCounts[employee.batch]++;
+            });
+
+            const sortedBatches = Object.keys(batchCounts).sort((a, b) => a - b);
+            const labels = sortedBatches.map(batch => `Batch ${batch}`);
+            const values = sortedBatches.map(batch => batchCounts[batch]);
+
+            return { labels, values };
+        }
+
+        // Setup search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('employeeSearch');
+            
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                
+                if (searchTerm.length < 2) {
+                    document.getElementById('employeeDetailSection').classList.add('hidden');
+                    document.getElementById('hierarchySection').classList.add('hidden');
+                    return;
+                }
+
+                const foundEmployee = Object.keys(employeeData).find(name => 
+                    name.toLowerCase().includes(searchTerm)
+                );
+
+                if (foundEmployee) {
+                    showEmployeeDetails(foundEmployee);
+                } else {
+                    document.getElementById('employeeDetailSection').classList.add('hidden');
+                    document.getElementById('hierarchySection').classList.add('hidden');
+                }
+            });
+        }
+
+        // Show employee details
+        function showEmployeeDetails(employeeName) {
+            const employee = employeeData[employeeName];
+            
+            // Calculate tenure based on batch number
+            const currentYear = 2026; // Based on the PDF date
+            const batchYear = 2024; // Assuming Batch 2 was in 2024
+            const tenure = currentYear - batchYear;
+
+            // Populate detail section
+            const detailContent = document.getElementById('employeeDetailContent');
+            detailContent.innerHTML = `
+                <div class="detail-item">
+                    <label>Employee Name</label>
+                    <div class="value">${employeeName}</div>
+                </div>
+                <div class="detail-item">
+                    <label>Batch Number</label>
+                    <div class="value">${employee.batch}</div>
+                </div>
+                <div class="detail-item">
+                    <label>Location</label>
+                    <div class="value">${employee.location}</div>
+                </div>
+                <div class="detail-item">
+                    <label>Years of Service</label>
+                    <div class="value">${tenure} years</div>
+                </div>
+                <div class="detail-item">
+                    <label>Reporting Manager</label>
+                    <div class="value">${employee.manager}</div>
+                </div>
+                <div class="detail-item">
+                    <label>Direct Reports</label>
+                    <div class="value">${employee.directReports.length}</div>
+                </div>
+                <div class="detail-item">
+                    <label>Team Size</label>
+                    <div class="value">${employee.directReports.length + 1}</div>
+                </div>
+            `;
+
+            // Populate hierarchy section
+            const hierarchyContent = document.getElementById('hierarchyContent');
+            hierarchyContent.innerHTML = `
+                <div class="hierarchy-level">
+                    <h4>Direct Reports</h4>
+                    <ul class="hierarchy-list">
+                        ${employee.directReports.length > 0 ? 
+                            employee.directReports.map(report => `<li>${report}</li>`).join('') : 
+                            '<li>No direct reports</li>'}
+                    </ul>
+                </div>
+            `;
+
+            // Show sections
+            document.getElementById('employeeDetailSection').classList.remove('hidden');
+            document.getElementById('hierarchySection').classList.remove('hidden');
+
+            // Show toast notification
+            showToast(`Loaded details for ${employeeName}`);
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    
+
