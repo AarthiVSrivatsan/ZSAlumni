@@ -1371,79 +1371,79 @@ function setupSearch() {
     });
 }
 
-        // Show employee details
-        function showEmployeeDetails(employeeName) {
-            const employee = employeeData[employeeName];
-            
-            // Calculate tenure based on batch number
-            const currentYear = 2026; // Based on the PDF date
-            const batchYear = 2024; // Assuming Batch 2 was in 2024
-            const tenure = currentYear - batchYear;
+       // Show employee details
+function showEmployeeDetails(employeeName) {
+    const employee = employeeData[employeeName];
+    
+    // Calculate tenure based on batch number
+    const currentYear = 2026; // Based on the PDF date
+    const batchYear = 2024; // Assuming Batch 2 was in 2024
+    const tenure = currentYear - batchYear;
 
-            // Populate detail section
-            const detailContent = document.getElementById('employeeDetailContent');
-            detailContent.innerHTML = `
-                <div class="detail-item">
-                    <label>Employee Name</label>
-                    <div class="value">${employeeName}</div>
-                </div>
-                <div class="detail-item">
-                    <label>Batch Number</label>
-                    <div class="value">${employee.batch}</div>
-                </div>
-                <div class="detail-item">
-                    <label>Location</label>
-                    <div class="value">${employee.location}</div>
-                </div>
-                <div class="detail-item">
-                    <label>Years of Service</label>
-                    <div class="value">${tenure} years</div>
-                </div>
-                <div class="detail-item">
-                    <label>Reporting Manager</label>
-                    <div class="value">${employee.manager}</div>
-                </div>
-                <div class="detail-item">
-                    <label>Direct Reports</label>
-                    <div class="value">${employee.directReports.length}</div>
-                </div>
-                <div class="detail-item">
-                    <label>Team Size</label>
-                    <div class="value">${employee.directReports.length + 1}</div>
-                </div>
-            `;
+    // Populate detail section
+    const detailContent = document.getElementById('employeeDetailContent');
+    detailContent.innerHTML = `
+        <div class="detail-item">
+            <label>Employee Name</label>
+            <div class="value">${employeeName}</div>
+        </div>
+        <div class="detail-item">
+            <label>Batch Number</label>
+            <div class="value">${employee.batch}</div>
+        </div>
+        <div class="detail-item">
+            <label>Location</label>
+            <div class="value">${employee.location}</div>
+        </div>
+        <div class="detail-item">
+            <label>Years of Service</label>
+            <div class="value">${tenure} years</div>
+        </div>
+        <div class="detail-item">
+            <label>Reporting Manager</label>
+            <div class="value">${employee.manager}</div>
+        </div>
+        <div class="detail-item">
+            <label>Direct Reports</label>
+            <div class="value">${employee.directReports.length}</div>
+        </div>
+        <div class="detail-item">
+            <label>Team Size</label>
+            <div class="value">${employee.directReports.length + 1}</div>
+        </div>
+    `;
 
-            // Populate hierarchy section
-            const hierarchyContent = document.getElementById('hierarchyContent');
-            hierarchyContent.innerHTML = `
-                <div class="hierarchy-level">
-                    <h4>Direct Reports</h4>
-                    <ul class="hierarchy-list">
-                        ${employee.directReports.length > 0 ? 
-                            employee.directReports.map(report => `<li>${report}</li>`).join('') : 
-                            '<li>No direct reports</li>'}
-                    </ul>
-                </div>
-            `;
+    // Populate hierarchy section
+    const hierarchyContent = document.getElementById('hierarchyContent');
+    hierarchyContent.innerHTML = `
+        <div class="hierarchy-level">
+            <h4>Direct Reports</h4>
+            <ul class="hierarchy-list">
+                ${employee.directReports.length > 0 ? 
+                    employee.directReports.map(report => `<li>${report}</li>`).join('') : 
+                    '<li>No direct reports</li>'}
+            </ul>
+        </div>
+    `;
 
-            // Show sections
-            document.getElementById('employeeDetailSection').classList.remove('hidden');
-            document.getElementById('hierarchySection').classList.remove('hidden');
+    // Show sections
+    document.getElementById('employeeDetailSection').classList.remove('hidden');
+    document.getElementById('hierarchySection').classList.remove('hidden');
 
-            // Show toast notification
-            showToast(`Loaded details for ${employeeName}`);
-        }
+    // Show toast notification
+    showToast(`Loaded details for ${employeeName}`);
+}
 
-        // Show toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
+// Show toast notification
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
     </script>
 </body>
 </html>
